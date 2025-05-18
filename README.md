@@ -6,7 +6,7 @@ This is a simple notification service built with Node.js, Express, and MongoDB. 
 
 ## 🚀 Features
 - Create a notification (`email`, `sms`, `push`)
-- Randomized delivery simulation (70% success rate)
+- Randomized delivery simulation
 - Failed notifications are retried automatically every 30 seconds
 - Retry limit (`maxRetries = 3`) to prevent endless attempts
 - REST API with proper JSON responses
@@ -44,8 +44,10 @@ PORT=5000
 
 ## 🛠️ Setup Instructions
 
-git clone https://github.com/your-username/notification_service.git
 
+```bash
+# Clone the repo
+git clone https://github.com/your-username/notification_service.git
 cd notification_service
 
 # Install dependencies
@@ -53,7 +55,6 @@ npm install
 
 # Start server
 npm run dev
-
 
 ### 🧪 API Testing (Use Postman)
 ➕ POST /notifications
