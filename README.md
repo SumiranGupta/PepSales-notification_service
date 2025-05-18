@@ -184,7 +184,7 @@ const {
 router.post("/notifications", sendNotification);
 router.get("/users/:id/notifications", getUserNotifications);
 module.exports = router;
-
+```js
 ### server.js
 const express = require("express");
 const dotenv = require("dotenv");
@@ -220,3 +220,4 @@ setInterval(retryFailedNotifications, 30 * 1000);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+```
