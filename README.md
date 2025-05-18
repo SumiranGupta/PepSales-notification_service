@@ -22,7 +22,6 @@ This is a simple notification service built with Node.js, Express, and MongoDB. 
 - Postman for API Testing
 
 ---
-
 ## 📂 Project Structure
 notification_service/
 ├── models/ # Mongoose schema
