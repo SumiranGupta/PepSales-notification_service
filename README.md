@@ -1,4 +1,4 @@
-✅ GitHub Repo Structure
+### ✅ GitHub Repo Structure
 notification_service/
 ├── config/
 │   └── db.js
@@ -51,7 +51,7 @@ notification_service/
 
 
 
-Create a `.env` file and add:
+### Create a `.env` file and add:
 MONGO_URI=mongodb://localhost:27017/notificationDB
 PORT=5000
 
@@ -69,7 +69,7 @@ npm install
 npm run dev
 
 
-🧪 API Testing (Use Postman)
+### 🧪 API Testing (Use Postman)
 ➕ POST /notifications
 Create a notification:
 {
@@ -77,10 +77,10 @@ Create a notification:
   "type": "email",
   "message": "This is a test notification"
 }
-📥 GET /users/:id/notifications
+### 📥 GET /users/:id/notifications
 Get all notifications for a user.
 
-🔁 Retry Mechanism
+### 🔁 Retry Mechanism
 Every 30 seconds, the system checks for failed notifications and retries.
 If it succeeds, it's marked as sent.
 If it fails 3 times, it's left as failed.
@@ -92,7 +92,7 @@ Example:
   "maxRetries": 3
 }
 📸 Screenshots
-![Screenshot 2025-05-18 205400](https://github.com/user-attachments/assets/c79d9c7c-1603-4c53-9972-24d1f2ffb26d)
+### ![Screenshot 2025-05-18 205400](https://github.com/user-attachments/assets/c79d9c7c-1603-4c53-9972-24d1f2ffb26d)
 
 
 💼 About Me
