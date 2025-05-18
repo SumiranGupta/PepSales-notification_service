@@ -44,7 +44,6 @@ PORT=5000
 ## 🛠️ Setup Instructions
 
 
-```bash
 # Clone the repo
 git clone https://github.com/your-username/notification_service.git
 cd notification_service
@@ -101,3 +100,123 @@ Example:
 Hi, I'm a B.Tech student from KIIT University passionate about backend development along with MERN stack. This project was built as part of my submission for the PepSales Backend Internship.
 
 ## 📄 Sample Code Files
+### `config/db.js`
+const mongoose = require("mongoose");
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB connected");
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+};
+module.exports = connectDB;
+
+### models/Notifications.js
+const mongoose = require("mongoose");
+
+const notificationSchema = new mongoose.Schema(
+  {
+    userId: { type: String, required: true },
+    type: { type: String, enum: ["email", "sms", "push"], required: true },
+    message: { type: String, required: true },
+    status: {
+      type: String,
+      enum: ["pending", "sent", "failed"],
+      default: "pending",
+    },
+    retryCount: { type: Number, default: 0 },
+    maxRetries: { type: Number, default: 3 },
+  },
+  { timestamps: true }
+);
+
+module.exports = mongoose.model("Notification", notificationSchema);
+
+
+### controllers/notificationController.js
+const Notification = require("../models/Notifications");
+
+const sendToUser = async (notification) => {
+  return Math.random() > 0.3; // 70% success rate
+};
+
+const sendNotification = async (req, res) => {
+  const { userId, type, message } = req.body;
+  try {
+    const newNotification = await Notification.create({ userId, type, message });
+    const success = await sendToUser(newNotification);
+
+  if (success) newNotification.status = "sent";
+    else {
+      newNotification.status = "failed";
+      newNotification.retryCount += 1;
+    }
+
+  await newNotification.save();
+    res.status(201).json(newNotification);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getUserNotifications = async (req, res) => {
+  try {
+    const notifications = await Notification.find({ userId: req.params.id });
+    res.json(notifications);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { sendNotification, getUserNotifications };
+
+
+### routes/notificationRoutes.js
+const express = require("express");
+const router = express.Router();
+const {
+  sendNotification,
+  getUserNotifications,
+} = require("../controllers/notificationController");
+
+router.post("/notifications", sendNotification);
+router.get("/users/:id/notifications", getUserNotifications);
+module.exports = router;
+
+### server.js
+const express = require("express");
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const notificationRoutes = require("./routes/notificationRoutes");
+const Notification = require("./models/Notifications");
+
+dotenv.config();
+connectDB();
+
+const app = express();
+app.use(express.json());
+app.use("/", notificationRoutes);
+
+const sendToUser = async (notification) => {
+  return Math.random() > 0.3;
+};
+
+const retryFailedNotifications = async () => {
+  const failed = await Notification.find({ status: "failed", retryCount: { $lt: 3 } });
+  for (const notif of failed) {
+    const success = await sendToUser(notif);
+    if (success) {
+      notif.status = "sent";
+    } else {
+      notif.retryCount += 1;
+    }
+    await notif.save();
+  }
+};
+
+setInterval(retryFailedNotifications, 30 * 1000);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
