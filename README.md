@@ -37,6 +37,7 @@ notification_service/
 
 ### Create a `.env` file and add:
 MONGO_URI=mongodb://localhost:27017/notificationDB
+
 PORT=5000
 
 
@@ -44,6 +45,7 @@ PORT=5000
 ## 🛠️ Setup Instructions
 
 git clone https://github.com/your-username/notification_service.git
+
 cd notification_service
 
 # Install dependencies
@@ -78,13 +80,18 @@ Example:
 ## 📸 Screenshots
 ![Screenshot 2025-05-18 204909](https://github.com/user-attachments/assets/ef1d37f7-5b38-432c-b272-4b9968f3710c)
 
+
 ![Screenshot 2025-05-18 204808](https://github.com/user-attachments/assets/059878a7-18f5-44a7-a9e3-dca71975a317)
+
 
 ![Screenshot 2025-05-18 204950](https://github.com/user-attachments/assets/4e2f5b07-5d64-4bfc-ab93-9a93a9943821)
 
+
 ![Screenshot 2025-05-18 205030](https://github.com/user-attachments/assets/95312f10-f414-44cc-bec8-714878da1f0a)
 
+
 ![Screenshot 2025-05-18 205400](https://github.com/user-attachments/assets/d621748b-d414-4363-bcf4-1b2fc51297b7)
+
 
 ![Screenshot 2025-05-18 205542](https://github.com/user-attachments/assets/694f2f66-5eae-4c32-9ae4-e3b4837c60e4)
 
