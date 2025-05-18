@@ -81,6 +81,10 @@ Example:
   "maxRetries": 3
 }
 ## 📸 Screenshots
+```js
+![image](https://github.com/user-attachments/assets/51ab27eb-ca71-48bb-827e-3367b54ab300)
+
+
 ![Screenshot 2025-05-18 204909](https://github.com/user-attachments/assets/ef1d37f7-5b38-432c-b272-4b9968f3710c)
 
 
@@ -98,7 +102,7 @@ Example:
 
 ![Screenshot 2025-05-18 205542](https://github.com/user-attachments/assets/694f2f66-5eae-4c32-9ae4-e3b4837c60e4)
 
-
+```
 
 ## 💼 About Me
 Hi, I'm a B.Tech student from KIIT University passionate about backend development along with MERN stack. This project was built as part of my submission for the PepSales Backend Internship.
