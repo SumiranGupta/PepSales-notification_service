@@ -23,12 +23,14 @@ This is a simple notification service built with Node.js, Express, and MongoDB. 
 
 ---
 ## 📂 Project Structure
+```js
 notification_service/
 ├── models/ # Mongoose schema
 ├── controllers/ # Core business logic
 ├── routes/ # Express routes
 ├── config/ # MongoDB connection
 ├── server.js # App entry point
+```
 
 
 
@@ -45,6 +47,7 @@ PORT=5000
 
 
 # Clone the repo
+```js
 git clone https://github.com/your-username/notification_service.git
 cd notification_service
 
@@ -53,6 +56,7 @@ npm install
 
 # Start server
 npm run dev
+```
 
 ### 🧪 API Testing (Use Postman)
 ➕ POST /notifications
@@ -101,6 +105,7 @@ Hi, I'm a B.Tech student from KIIT University passionate about backend developme
 
 ## 📄 Sample Code Files
 ### `config/db.js`
+```js
 const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
@@ -112,8 +117,9 @@ const connectDB = async () => {
   }
 };
 module.exports = connectDB;
-
+```
 ### models/Notifications.js
+```js
 const mongoose = require("mongoose");
 
 const notificationSchema = new mongoose.Schema(
@@ -133,9 +139,10 @@ const notificationSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Notification", notificationSchema);
-
+```
 
 ### controllers/notificationController.js
+```js
 const Notification = require("../models/Notifications");
 
 const sendToUser = async (notification) => {
@@ -171,9 +178,9 @@ const getUserNotifications = async (req, res) => {
 };
 
 module.exports = { sendNotification, getUserNotifications };
-
-
+```
 ### routes/notificationRoutes.js
+```js
 const express = require("express");
 const router = express.Router();
 const {
@@ -184,8 +191,9 @@ const {
 router.post("/notifications", sendNotification);
 router.get("/users/:id/notifications", getUserNotifications);
 module.exports = router;
-```js
+```
 ### server.js
+```js
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
